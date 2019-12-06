@@ -1,0 +1,477 @@
+//created on: 2019-12-06
+package com.sample
+
+//list any import classes here.
+import com.sample.DroolsTest.Interafce;
+import java.lang.String;
+
+
+//declare any global variables here
+declare Answer
+	question : String
+    msg: String
+end
+
+
+rule "Give me a good mechanics over theme"
+	when
+		pastAnswer : Answer( question == "What's most important to you?", msg == "Give me a good mechanics over theme" )
+	then
+		String question = "Do you want a root or network-building game?";
+		final String[] answers = {"Not realy", 
+			"Trains & infrstructure? Sure!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+
+//Trains & infrstructure? Sure!
+
+
+rule "Trains & infrstructure? Sure!"
+	when
+		pastAnswer : Answer( question == "Do you want a root or network-building game?", msg == "Trains & infrstructure? Sure!" )
+	then
+		String question = "What level of complexity can your group handle?";
+		final String[] answers = {"Low", 
+			"Medium", "Heavy"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Medium"
+	when
+		pastAnswer : Answer( question == "What level of complexity can your group handle?", msg == "Medium" )
+	then
+		String question = "Want to be able to customize difficulty?";
+		final String[] answers = {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Want to be able to customize difficulty?Yes"
+	when
+		pastAnswer : Answer( question == "Want to be able to customize difficulty?", msg == "Yes" )
+	then
+		Interafce.showGame("Steam: Rails to Reaches");
+end
+
+rule "Want to be able to customize difficulty?No"
+	when
+		pastAnswer : Answer( question == "Want to be able to customize difficulty?", msg == "No" )
+	then
+		Interafce.showGame("Thurn & Taxis");
+end
+
+rule "Heavy"
+	when
+		pastAnswer : Answer( question == "What level of complexity can your group handle?", msg == "Heavy" )
+	then
+		String question = "Trains  or Infrastructure?";
+		final String[] answers = {"Trains", 
+			"Infrastructure"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Infrastructure"
+	when
+		pastAnswer : Answer( question == "Trains  or Infrastructure?", msg == "Infrastructure" )
+	then
+		Interafce.showGame("Power Grid");
+end
+
+rule "Trains"
+	when
+		pastAnswer : Answer( question == "Trains  or Infrastructure?", msg == "Trains" )
+	then
+		String question = "Want to play the stock market too?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Want to play the stock market too?Yes"
+	when
+		pastAnswer : Answer( question == "Want to play the stock market too?", msg == "Yes" )
+	then
+		Interafce.showGame("18XX Series");
+end
+
+rule "Want to play the stock market too?No"
+	when
+		pastAnswer : Answer( question == "Want to play the stock market too?", msg == "No" )
+	then
+		Interafce.showGame("Crayon Rails Games");
+end
+
+rule "Low"
+	when
+		pastAnswer : Answer( question == "What level of complexity can your group handle?", msg == "Low" )
+	then
+		String question = "Have you played Ticket to Rride?";
+		final String[] answers= {"Not yet", 
+			"Yes. What else is out there?"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Not yet"
+	when
+		pastAnswer : Answer( question == "Have you played Ticket to Rride?", msg == "Not yet" )
+	then
+		Interafce.showGame("Ticket to Rride");
+end
+
+rule "Yes. What else is out there?"
+	when
+		pastAnswer : Answer( question == "Have you played Ticket to Rride?", msg == "Yes. What else is out there?" )
+	then
+		Interafce.showGame("Chicago Express");
+end
+
+
+//Not Realy
+
+
+rule "Not realy"
+	when
+		pastAnswer : Answer( question == "Do you want a root or network-building game?", msg == "Not realy" )
+	then
+		String question = "Civilization building, then?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+
+//Civilization building, then?Yes
+
+
+rule "Civilization building, then?Yes"
+	when
+		pastAnswer : Answer( question == "Civilization building, then?", msg == "Yes" )
+	then
+		String question = "Do you want to play with technology trees?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Do you want to play with technology trees?No"
+	when
+		pastAnswer : Answer( question == "Do you want to play with technology trees?", msg == "No" )
+	then
+		Interafce.showGame("7 Wonders");
+end
+
+rule "Do you want to play with technology trees?Yes"
+	when
+		pastAnswer : Answer( question == "Do you want to play with technology trees?", msg == "Yes" )
+	then
+		String question = "How complex?";
+		final String[] answers= {"Let's keep it simpler", 
+			"Pretty complex"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Let's keep it simpler"
+	when
+		pastAnswer : Answer( question == "How complex?", msg == "Let's keep it simpler" )
+	then
+		Interafce.showGame("Clash of Cultures");
+end
+
+rule "Pretty complex"
+	when
+		pastAnswer : Answer( question == "How complex?", msg == "Pretty complex" )
+	then
+		String question = "Want to see your world on a map?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Want to see your world on a map?Yes"
+	when
+		pastAnswer : Answer( question == "Want to see your world on a map?", msg == "Yes" )
+	then
+		Interafce.showGame("Sid Meier's Civilization: The Board Game");
+end
+
+rule "Want to see your world on a map?No"
+	when
+		pastAnswer : Answer( question == "Want to see your world on a map?", msg == "No" )
+	then
+		Interafce.showGame("Through the Ages: A Story of Civilization");
+end
+
+
+//Civilization building, then?No
+
+
+rule "Civilization building, then?No"
+	when
+		pastAnswer : Answer( question == "Civilization building, then?", msg == "No" )
+	then
+		String question = "A cooperatice game?";
+		final String[] answers= {"Yes, completly", 
+			"Everybody's on their own"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Yes, completly"
+	when
+		pastAnswer : Answer( question == "A cooperatice game?", msg == "Yes, completly" )
+	then
+		String question = "How hard do you want to make it?";
+		final String[] answers= {"Easy", 
+			"Medium", "Difficult", "Very Difficult"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "How hard do you want to make it?Easy"
+	when
+		pastAnswer : Answer( question == "How hard do you want to make it?", msg == "Easy" )
+	then
+		Interafce.showGame("Forbidden Island");
+end
+
+rule "How hard do you want to make it?Medium"
+	when
+		pastAnswer : Answer( question == "How hard do you want to make it?", msg == "Medium" )
+	then
+		Interafce.showGame("Flash Point: Fire Rescue");
+end
+
+rule "How hard do you want to make it?Difficult"
+	when
+		pastAnswer : Answer( question == "How hard do you want to make it?", msg == "Difficult" )
+	then
+		Interafce.showGame("Pandemic");
+end
+
+rule "How hard do you want to make it?Very Difficult"
+	when
+		pastAnswer : Answer( question == "How hard do you want to make it?", msg == "Very Difficult" )
+	then
+		Interafce.showGame("Ghost Stories");
+end
+
+rule "Everybody's on their own"
+	when
+		pastAnswer : Answer( question == "A cooperatice game?", msg == "Everybody's on their own" )
+	then
+		String question = "More than 2 players?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Everybody's on their ownNo"
+	when
+		pastAnswer : Answer( question == "More than 2 players?", msg == "No" )
+	then
+		String question = "How long do you have?";
+		final String[] answers= {"30 minutes or less", 
+			"At lest an hour"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "30 minutes or less"
+	when
+		pastAnswer : Answer( question == "How long do you have?", msg == "30 minutes or less" )
+	then
+		String question = "Are you an explorer or a builder?";
+		final String[] answers= {"Explorer", 
+			"Builder"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Explorer"
+	when
+		pastAnswer : Answer( question == "Are you an explorer or a builder?", msg == "Explorer" )
+	then
+		Interafce.showGame("Lost Cities");
+end
+
+rule "Builder"
+	when
+		pastAnswer : Answer( question == "Are you an explorer or a builder?", msg == "Builder" )
+	then
+		Interafce.showGame("Agricola: All Creatures Big & Small");
+end
+
+rule "At lest an hour"
+	when
+		pastAnswer : Answer( question == "How long do you have?", msg == "At lest an hour" )
+	then
+		String question = "Want to rewrite history?";
+		final String[] answers= {"Yes - especially the Cold War", 
+			"No, I prefer mysteries"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Yes - especially the Cold War"
+	when
+		pastAnswer : Answer( question == "Want to rewrite history?", msg == "Yes - especially the Cold War" )
+	then
+		Interafce.showGame("Twilight Struggle");
+end
+
+rule "No, I prefer mysteries"
+	when
+		pastAnswer : Answer( question == "Want to rewrite history?", msg == "No, I prefer mysteries" )
+	then
+		Interafce.showGame("Mr. Jack");
+end
+
+rule "Everybody's on their ownYes"
+	when
+		pastAnswer : Answer( question == "More than 2 players?", msg == "Yes" )
+	then
+		String question = "Does it have to be new?";
+		final String[] answers= {"Yes, we've gotten better at design", 
+			"No, classics are classics for a reason"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Yes, we've gotten better at design"
+	when
+		pastAnswer : Answer( question == "Does it have to be new?", msg == "Yes, we've gotten better at design" )
+	then
+		String question = "Maybe a new twist on worker placement?";
+		final String[] answers= {"Yes", 
+			"No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Maybe a new twist on worker placement?Yes"
+	when
+		pastAnswer : Answer( question == "Maybe a new twist on worker placement?", msg == "Yes" )
+	then
+		Interafce.showGame("Tzolk'in: The Mayan Calender");
+end
+
+rule "Maybe a new twist on worker placement?No"
+	when
+		pastAnswer : Answer( question == "Maybe a new twist on worker placement?", msg == "No" )
+	then
+		String question = "Building an empire or working magic?";
+		final String[] answers= {"Empire!", 
+			"Magic!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Empire!"
+	when
+		pastAnswer : Answer( question == "Building an empire or working magic?", msg == "Empire!" )
+	then
+		Interafce.showGame("Kingdom Builder");
+end
+
+rule "Magic!"
+	when
+		pastAnswer : Answer( question == "Building an empire or working magic?", msg == "Magic!" )
+	then
+		Interafce.showGame("Seasons");
+end
+
+rule "No, classics are classics for a reason"
+	when
+		pastAnswer : Answer( question == "Does it have to be new?", msg == "No, classics are classics for a reason" )
+	then
+		String question = "Classic board or card games?";
+		final String[] answers= {"Boards are a must!", 
+			"Shuffling is fun!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Boards are a must!"
+	when
+		pastAnswer : Answer( question == "Classic board or card games?", msg == "Boards are a must!" )
+	then
+		String question = "Developing on a small or grand scale?";
+		final String[] answers= {"Build me a nation!", 
+			"I just want my bit of land"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Build me a nation!"
+	when
+		pastAnswer : Answer( question == "Developing on a small or grand scale?", msg == "Build me a nation!" )
+	then
+		Interafce.showGame("Puerto Rico");
+end
+
+rule "I just want my bit of land"
+	when
+		pastAnswer : Answer( question == "Developing on a small or grand scale?", msg == "I just want my bit of land" )
+	then
+		Interafce.showGame("Agricola");
+end
+
+rule "Shuffling is fun!"
+	when
+		pastAnswer : Answer( question == "Classic board or card games?", msg == "Shuffling is fun!" )
+	then
+		String question = "Want to build your own deck?";
+		final String[] answers= {"Yes", 
+			"I'd rather build a tableau"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Want to build your own deck?Yes"
+	when
+		pastAnswer : Answer( question == "Want to build your own deck?", msg == "Yes" )
+	then
+		Interafce.showGame("Dominion");
+end
+
+rule "Want to build your own deck?I'd rather build a tableau"
+	when
+		pastAnswer : Answer( question == "Want to build your own deck?", msg == "I'd rather build a tableau" )
+	then
+		Interafce.showGame("St. Petersburg");
+end
+

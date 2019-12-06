@@ -1,0 +1,44 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Interafce;
+import java.lang.String;
+import java.util.ArrayList;
+
+declare Answer
+	question : String
+    msg: String
+end
+
+//declare Propositions
+//    msg: java.util.ArrayList
+//end
+
+rule "Init"
+	when
+	then
+		Answer answer = new Answer("Start", "I want to buy a game");
+		insert(answer);
+end
+
+rule "I want to buy a game"
+	when
+		pastAnswer : Answer( question == "Start", msg == "I want to buy a game" )
+	then
+		String question = "What type of game are you looking for?";
+		final String[] answers = {"A Strategy Game", "I want a Wargame", "I'm looking for a Filler or party Game"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "A Strategy Game"
+	when
+		pastAnswer : Answer( question == "What type of game are you looking for?", msg == "A Strategy Game" )
+	then
+		String question = "What's most important to you?";
+		final String[] answers = {"Give me a good mechanics over theme", 
+			"I'm playing with Non'Gamers"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
