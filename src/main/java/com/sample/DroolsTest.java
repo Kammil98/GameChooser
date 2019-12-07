@@ -19,11 +19,7 @@ public class DroolsTest {
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
-
-            // go !
-            //Message message = new Message();
-            //message.setMessage("Hello World");
-            //message.setStatus(Message.HELLO);
+		
             kSession.insert(new Interafce());
             kSession.fireAllRules();
         } catch (Throwable t) {
@@ -32,30 +28,6 @@ public class DroolsTest {
     }
 
     public static class Interafce {
-
-        public static final int HELLO = 0;
-        public static final int GOODBYE = 1;
-
-        private String message;
-
-        private int status;
-
-        public String getMessage() {
-            return this.message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public int getStatus() {
-            return this.status;
-        }
-
-        public void setStatus(int status) {
-            this.status = status;
-        }
-        
         /*
          * Display message box to choose one of the given options
          * @param options texts displayed as a answers
@@ -67,7 +39,7 @@ public class DroolsTest {
         	//optionsList = options.toArray(optionsList);
         	return (String) JOptionPane.showInputDialog(null, 
         			questionMsg,
-        	        "Proszê odpowiedzieæ",
+        	        "ProszÃª odpowiedzieÃ¦",
         	        JOptionPane.QUESTION_MESSAGE, 
         	        null, 
         	        options, 
@@ -77,9 +49,10 @@ public class DroolsTest {
         /*
          * Display message box to inform 
          * about selected game
+	 * @param game text displayed as a selected game
          **/
-        public static void showGame(String questionMsg) {
-        	JOptionPane.showMessageDialog(null, questionMsg);
+        public static void showGame(String game) {
+        	JOptionPane.showMessageDialog(null, game);
         }
         
         
