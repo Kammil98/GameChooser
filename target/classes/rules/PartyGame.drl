@@ -1,0 +1,150 @@
+//created on: 2019-12-07
+package com.sample
+
+
+//list any import classes here.
+import com.sample.DroolsTest.Interafce;
+import java.lang.String;
+import java.util.ArrayList;
+
+
+//declare any global variables here
+declare Answer
+	question : String
+    msg: String
+end
+
+
+
+rule "I'm looking for a Filler or party Game"
+	when
+		pastAnswer : Answer( question == "What type of game are you looking for?", msg == "I'm looking for a Filler or party Game" )
+	then
+		String question = "Are you playing with Geeks?";
+		final String[] answers = {"Yes", "No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Are you playing with Geeks?Yes"
+	when
+		pastAnswer : Answer( question == "Are you playing with Geeks?", msg == "Yes" )
+	then
+		String question = "Rolling dice, or a bluffing game?";
+		final String[] answers = {"Dice", "Bluffing"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Dice"
+	when
+		pastAnswer : Answer( question == "Rolling dice, or a bluffing game?", msg == "Dice" )
+	then
+		String question = "Are you a zombie or a giant monster?";
+		final String[] answers = {"Braaaaaaains....", "I'm Godzilla!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Braaaaaaains...."
+	when
+		pastAnswer : Answer( question == "Are you a zombie or a giant monster?", msg == "Braaaaaaains...." )
+	then
+		Interafce.showGame("Zombie Dice");
+end
+
+rule "I'm Godzilla!"
+	when
+		pastAnswer : Answer( question == "Are you a zombie or a giant monster?", msg == "I'm Godzilla!" )
+	then
+		Interafce.showGame("King of Tokyo");
+end
+
+rule "Bluffing"
+	when
+		pastAnswer : Answer( question == "Rolling dice, or a bluffing game?", msg == "Bluffing" )
+	then
+		String question = "Cooperative or competitive?";
+		final String[] answers = {"Trust no one", "Let's play in teams"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Trust no one"
+	when
+		pastAnswer : Answer( question == "Cooperative or competitive?", msg == "Trust no one" )
+	then
+		Interafce.showGame("Coup");
+end
+
+rule "Let's play in teams"
+	when
+		pastAnswer : Answer( question == "Cooperative or competitive?", msg == "Let's play in teams" )
+	then
+		Interafce.showGame("The Resistance");
+end
+
+rule "Are you playing with Geeks?No"
+	when
+		pastAnswer : Answer( question == "Are you playing with Geeks?", msg == "No" )
+	then
+		String question = "Do you like trivia?";
+		final String[] answers = {"Yes", "No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Do you like trivia?Yes"
+	when
+		pastAnswer : Answer( question == "Do you like trivia?", msg == "Yes" )
+	then
+		Interafce.showGame("Wits & Wagers");
+end
+
+rule "Do you like trivia?"
+	when
+		pastAnswer : Answer( question == "Do you like trivia?", msg == "No" )
+	then
+		String question = "How about something creative?";
+		final String[] answers = {"Sure", "Nope"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "How about something creative?Nope"
+	when
+		pastAnswer : Answer( question == "How about something creative?", msg == "Nope" )
+	then
+		Interafce.showGame("Hanabi");
+end
+
+rule "How about something creative?Sure"
+	when
+		pastAnswer : Answer( question == "How about something creative?", msg == "Sure" )
+	then
+		String question = "Working with words or pictures?";
+		final String[] answers = {"words", "pictures"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "words"
+	when
+		pastAnswer : Answer( question == "Working with words or pictures?", msg == "words" )
+	then
+		Interafce.showGame("Apples to Apples");
+end
+
+rule "pictures"
+	when
+		pastAnswer : Answer( question == "Working with words or pictures?", msg == "pictures" )
+	then
+		Interafce.showGame("Dixit");
+end

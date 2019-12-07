@@ -25,7 +25,8 @@ rule "I want to buy a game"
 		pastAnswer : Answer( question == "Start", msg == "I want to buy a game" )
 	then
 		String question = "What type of game are you looking for?";
-		final String[] answers = {"A Strategy Game", "I want a Wargame", "I'm looking for a Filler or party Game"};
+		final String[] answers = {"A Strategy Game", "I want a Wargame",
+		 "I'm looking for a Filler or party Game"};
 		String answer = Interafce.showMsgBox(
 		question, answers);
 		insert(new Answer(question, answer));
