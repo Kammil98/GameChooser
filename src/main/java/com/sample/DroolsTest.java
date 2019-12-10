@@ -67,7 +67,7 @@ public class DroolsTest {
         	//optionsList = options.toArray(optionsList);
         	return (String) JOptionPane.showInputDialog(null, 
         			questionMsg,
-        	        "Proszê odpowiedzieæ",
+        	        "Answer, please :)",
         	        JOptionPane.QUESTION_MESSAGE, 
         	        null, 
         	        options, 

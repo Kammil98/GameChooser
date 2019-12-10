@@ -1,0 +1,182 @@
+//created on: 9 gru 2019
+package com.sample
+
+//list any import classes here.
+import com.sample.DroolsTest.Interafce;
+import java.lang.String;
+import java.util.ArrayList;
+
+//declare any global variables here
+declare Answer
+	question : String
+    msg: String
+end
+
+rule "I'm playing with Non'Gamers"
+	when
+		pastAnswer : Answer( question == "What's most important to you?", msg == "I'm playing with Non'Gamers" )
+	then
+		String question = "Are they kids?";
+		final String[] answers = {"Yes","No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Are they kids?Yes"
+	when
+		pastAnswer : Answer( question == "Are they kids?", msg == "Yes" )
+	then
+		String question = "Do they like animals?";
+		final String[] answers = {"Yes","No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Are they kids?No"
+	when
+		pastAnswer : Answer( question == "Are they kids?", msg == "No" )
+	then
+		String question = "Do they hold grudges?";
+		final String[] answers = {"No","Yes"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Do they like animals?Yes"
+	when
+		pastAnswer : Answer( question == "Do they like animals?", msg == "Yes" )
+	then
+		String question = "How's their attention span?";
+		final String[] answers = {"Pretty long","Pretty short"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Do they like animals?No"
+	when
+		pastAnswer : Answer( question == "Do they like animals?", msg == "No" )
+	then
+		String question = "How about something more abstract?";
+		final String[] answers = {"Sure","No thanks"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Pretty long"
+	when
+		pastAnswer : Answer( question == "How's their attention span?", msg == "Pretty long" )
+	then
+		Interafce.showGame("Zooloretto");
+end
+
+rule "Pretty short"
+	when
+		pastAnswer : Answer( question == "How's their attention span?", msg == "Pretty short" )
+	then
+		Interafce.showGame("Hey! That's my fish!");
+end
+
+rule "No thanks"
+	when
+		pastAnswer : Answer( question == "How about something more abstract?", msg == "No thanks" )
+	then
+		Interafce.showGame("River Dragons");
+end
+
+rule "Sure"
+	when
+		pastAnswer : Answer( question == "How about something more abstract?", msg == "Sure" )
+	then
+		String question = "Anybody scared of insects?";
+		final String[] answers = {"Maybe a little...","Nope!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Maybe a little..."
+	when
+		pastAnswer : Answer( question == "Anybody scared of insects?", msg == "Maybe a little..." )
+	then
+		Interafce.showGame("Ingenious");
+end
+
+rule "Nope!"
+	when
+		pastAnswer : Answer( question == "Anybody scared of insects?", msg == "Nope!" )
+	then
+		Interafce.showGame("Hive");
+end
+
+rule "Do they hold grudges?No"
+	when
+		pastAnswer : Answer( question == "Do they hold grudges?", msg == "No" )
+	then
+		Interafce.showGame("Survive: Escape from Atlantis");
+end
+
+rule "Do they hold grudges?Yes"
+	when
+		pastAnswer : Answer( question == "Do they hold grudges?", msg == "Yes" )
+	then
+		String question = "Do they like trains?";
+		final String[] answers = {"No","Yes"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Do they like trains?Yes"
+	when
+		pastAnswer : Answer( question == "Do they like trains?", msg == "Yes" )
+	then
+		Interafce.showGame("Ticket to Ride");
+end
+
+rule "Do they like trains?No"
+	when
+		pastAnswer : Answer( question == "Do they like trains?", msg == "No" )
+	then
+		String question = "How about rolling lots of dice?";
+		final String[] answers = {"Luck, Be a lady!","Pure strategy, please"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Luck, Be a lady!"
+	when
+		pastAnswer : Answer( question == "How about rolling lots of dice?", msg == "Luck, Be a lady!" )
+	then
+		String question = "And negotiation?";
+		final String[] answers = {"I love negotiating and trading","No, I'd rather do my own thing"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Pure strategy, please"
+	when
+		pastAnswer : Answer( question == "How about rolling lots of dice?", msg == "Pure strategy, please" )
+	then
+		Interafce.showGame("Carcassone");
+end
+
+rule "I love negotiating and trading"
+	when
+		pastAnswer : Answer( question == "And negotiation?", msg == "I love negotiating and trading" )
+	then
+		Interafce.showGame("Settlers of Catan");
+end
+
+rule "No, I'd rather do my own thing"
+	when
+		pastAnswer : Answer( question == "And negotiation?", msg == "No, I'd rather do my own thing" )
+	then
+		Interafce.showGame("Stone Age");
+end

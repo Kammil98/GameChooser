@@ -1,0 +1,264 @@
+//created on: 9 gru 2019
+package com.sample
+
+//list any import classes here.
+import com.sample.DroolsTest.Interafce;
+import java.lang.String;
+import java.util.ArrayList;
+
+
+//declare any global variables here
+declare Answer
+	question : String
+    msg: String
+end
+
+
+rule "I want a Wargame"
+	when
+		pastAnswer : Answer( question == "What type of game are you looking for?", msg == "I want a Wargame" )
+	then
+		String question = "For how many players?";
+		final String[] answers = {"2 or more", "Just me"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "2 or more"
+	when
+		pastAnswer : Answer( question == "For how many players?", msg == "2 or more" )
+	then
+		String question = "Do you have any wargaming experience?";
+		final String[] answers = {"It's new to me", "Yes"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "It's new to me"
+	when
+		pastAnswer : Answer( question == "Do you have any wargaming experience?", msg == "It's new to me" )
+	then
+		String question = "Are you a fan of Risk?";
+		final String[] answers = {"Yes", "No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Are you a fan of Risk?Yes"
+	when
+		pastAnswer : Answer( question == "Are you a fan of Risk?", msg == "Yes" )
+	then
+		Interafce.showGame("Risk: Legacy");
+end
+
+rule "Are you a fan of Risk?No"
+	when
+		pastAnswer : Answer( question == "Are you a fan of Risk?", msg == "No" )
+	then
+		String question = "World history, or high fantasy?";
+		final String[] answers = {"History", "Fantasy"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "World history, or high fantasy?History"
+	when
+		pastAnswer : Answer( question == "World history, or high fantasy?", msg == "History" )
+	then
+		Interafce.showGame("Memoir '44");
+end
+
+rule "World history, or high fantasy?Fantasy"
+	when
+		pastAnswer : Answer( question == "World history, or high fantasy?", msg == "Fantasy" )
+	then
+		Interafce.showGame("Battles of Westeros");
+end
+
+rule "Do you have any wargaming experience?Yes"
+	when
+		pastAnswer : Answer( question == "Do you have any wargaming experience?", msg == "Yes" )
+	then
+		String question = "Want to command Roman legions?";
+		final String[] answers = {"Yes", "No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Want to command Roman legions?Yes"
+	when
+		pastAnswer : Answer( question == "Want to command Roman legions?", msg == "Yes" )
+	then
+		Interafce.showGame("Commands & Colors: Ancients");
+end
+
+rule "Want to command Roman legions?No"
+	when
+		pastAnswer : Answer( question == "Want to command Roman legions?", msg == "No" )
+	then
+		String question = "Lead 19th Century battle lines?";
+		final String[] answers = {"No", "Yes"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Lead 19th Century battle lines?Yes"
+	when
+		pastAnswer : Answer( question == "Lead 19th Century battle lines?", msg == "Yes" )
+	then
+		Interafce.showGame("1812: The Invasion of Canada");
+end
+
+rule "Lead 19th Century battle lines?No"
+	when
+		pastAnswer : Answer( question == "Lead 19th Century battle lines?", msg == "No" )
+	then
+		String question = "How about World War II?";
+		final String[] answers = {"Yes", "No"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "How about World War II?Yes"
+	when
+		pastAnswer : Answer( question == "How about World War II?", msg == "Yes" )
+	then
+		String question = "Card- or dice- driven combat?";
+		final String[] answers = {"*roll roll roll*", "*shuffle shuffle*"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "*roll roll roll*"
+	when
+		pastAnswer : Answer( question == "Card- or dice- driven combat?", msg == "*roll roll roll*" )
+	then
+		Interafce.showGame("Tide of Iron");
+end
+
+rule "*shuffle shuffle*"
+	when
+		pastAnswer : Answer( question == "Card- or dice- driven combat?", msg == "*shuffle shuffle*" )
+	then
+		Interafce.showGame("Combat Commander Series");
+end
+
+rule "How about World War II?No"
+	when
+		pastAnswer : Answer( question == "How about World War II?", msg == "No" )
+	then
+		String question = "Modern Warfare, then?";
+		final String[] answers = {"Yes, I like the immediacy", "No, I'm tired of real wars"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Yes, I like the immediacy"
+	when
+		pastAnswer : Answer( question == "Modern Warfare, then?", msg == "Yes, I like the immediacy" )
+	then
+		Interafce.showGame("Labyrinth: The War on Terror");
+end
+
+rule "No, I'm tired of real wars"
+	when
+		pastAnswer : Answer( question == "Modern Warfare, then?", msg == "No, I'm tired of real wars" )
+	then
+		String question = "Science fiction or alternate history?";
+		final String[] answers = {"Alt-History", "Science Fiction"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Alt-History"
+	when
+		pastAnswer : Answer( question == "Science fiction or alternate history?", msg == "Alt-History" )
+	then
+		String question = "Tactical minatures, or large-scale strategy?";
+		final String[] answers = {"Strategic", "Tactical"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Science Fiction"
+	when
+		pastAnswer : Answer( question == "Science fiction or alternate history?", msg == "Science Fiction" )
+	then
+		String question = "Space ships or giant robots?";
+		final String[] answers = {"Ships!", "Mechs!"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Strategic"
+	when
+		pastAnswer : Answer( question == "Tactical minatures, or large-scale strategy?", msg == "Strategic" )
+	then
+		Interafce.showGame("Fortress America");
+end
+
+rule "Tactical"
+	when
+		pastAnswer : Answer( question == "Tactical minatures, or large-scale strategy?", msg == "Tactical" )
+	then
+		Interafce.showGame("Dust Tactics");
+end
+
+rule "Ships!"
+	when
+		pastAnswer : Answer( question == "Space ships or giant robots?", msg == "Ships!" )
+	then
+		Interafce.showGame("Battleship Galaxies");
+end
+
+rule "Mechs!"
+	when
+		pastAnswer : Answer( question == "Space ships or giant robots?", msg == "Mechs!" )
+	then
+		Interafce.showGame("Battletech");
+end
+
+rule "Just me"
+	when
+		pastAnswer : Answer( question == "For how many players?", msg == "Just me" )
+	then
+		String question = "Select";
+		final String[] answers = {"Historic Battles", "Modern Air Support", "Science Fiction"};
+		String answer = Interafce.showMsgBox(
+		question, answers);
+		insert(new Answer(question, answer));
+end
+
+rule "Select Historic Battles"
+	when
+		pastAnswer : Answer( question == "Select", msg == "Historic Battles" )
+	then
+		Interafce.showGame("Field Commander Series");
+end
+
+rule "Select Modern Air Support"
+	when
+		pastAnswer : Answer( question == "Select", msg == "Modern Air Support" )
+	then
+		Interafce.showGame("Thunderbolt: Apache Leader");
+end
+
+rule "Select Science Fiction"
+	when
+		pastAnswer : Answer( question == "Select", msg == "Science Fiction" )
+	then
+		Interafce.showGame("Space Infantry");
+end
+
